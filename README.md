@@ -82,14 +82,14 @@ CALENDAR-APP/
 │       └── CalendarLayout.jsx
 
 
-##  Installation
+# Installation
 
-```bash
 git clone https://github.com/your-username/Calender-Poject.git
 cd CALENDAR-APP
 npm install
 npm start
 
+---
 ## Usage
 Click on a thumbnail image to change theme
 Navigate between months using arrows
