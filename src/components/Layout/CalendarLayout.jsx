@@ -14,28 +14,30 @@ const CalendarLayout = () => {
   );
 
   // LOAD
-  useEffect(() => {
-    const savedMonth = localStorage.getItem("selected_month");
-    const savedStart = localStorage.getItem("selected_start");
-    const savedEnd = localStorage.getItem("selected_end");
+  // LOAD
+useEffect(() => {
+  const savedMonth = localStorage.getItem("selected_month");
+  const savedStart = localStorage.getItem("selected_start");
+  const savedEnd = localStorage.getItem("selected_end");
 
-    if (savedMonth) setCurrentMonth(new Date(savedMonth));
+  if (savedMonth) setCurrentMonth(new Date(savedMonth));
 
-    if (savedStart) {
-      const start = new Date(savedStart);
-      setStartDate(start);
+  if (savedStart) {
+    const start = new Date(savedStart);
+    setStartDate(start);
 
-      if (!savedEnd) {
-        setEndDate(start);
-      }
+    if (!savedEnd) {
+      setEndDate(start);
     }
+  }
 
-    if (savedEnd) {
-      setEndDate(new Date(savedEnd));
-    }
+  if (savedEnd) {
+    setEndDate(new Date(savedEnd));
+  }
 
-    setIsLoaded(true);
-  }, []);
+  setIsLoaded(true);
+
+}, []);
 
   // RESET on month change
   useEffect(() => {
