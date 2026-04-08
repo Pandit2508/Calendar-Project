@@ -37,37 +37,38 @@ const CalendarLayout = () => {
     setIsLoaded(true);
   }, []);
 
-  // 🔥 FIX: reset on month change
+  // RESET on month change
   useEffect(() => {
     if (!isLoaded) return;
 
     setStartDate(null);
     setEndDate(null);
-  }, [currentMonth]);
+  }, [currentMonth, isLoaded]); // ✅ FIXED
 
   // SAVE
   useEffect(() => {
-  if (!isLoaded) return;
+    if (!isLoaded) return;
 
-  localStorage.setItem("selected_month", currentMonth.toISOString());
+    localStorage.setItem("selected_month", currentMonth.toISOString());
 
-  if (startDate) {
-    localStorage.setItem("selected_start", startDate.toISOString());
-  }
+    if (startDate) {
+      localStorage.setItem("selected_start", startDate.toISOString());
+    }
 
-  if (endDate) {
-    localStorage.setItem("selected_end", endDate.toISOString());
-  }
+    if (endDate) {
+      localStorage.setItem("selected_end", endDate.toISOString());
+    }
 
-  if (startDate && !endDate) {
-    localStorage.setItem("selected_end", startDate.toISOString());
-  }
-}, [currentMonth, startDate, endDate, isLoaded]);
+    if (startDate && !endDate) {
+      localStorage.setItem("selected_end", startDate.toISOString());
+    }
+  }, [currentMonth, startDate, endDate, isLoaded]); // ✅ already correct
 
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center p-4">
       <div className="bg-white shadow-2xl rounded-2xl overflow-hidden w-full max-w-5xl">
-
+        
+        {/* Hero Image */}
         <div className="relative h-60 md:h-72">
           <img
             src={imageUrl}
@@ -85,8 +86,10 @@ const CalendarLayout = () => {
           </div>
         </div>
 
+        {/* Bottom Section */}
         <div className="flex flex-col md:flex-row">
 
+          {/* Notes */}
           <div className="md:w-1/3 border-r p-4">
             <NotesPanel
               startDate={startDate}
@@ -95,6 +98,7 @@ const CalendarLayout = () => {
             />
           </div>
 
+          {/* Calendar */}
           <div className="md:w-2/3 p-4">
             <CalendarGrid
               currentMonth={currentMonth}
