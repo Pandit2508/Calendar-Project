@@ -110,8 +110,7 @@ Drag-to-select date ranges
 Dark/light mode toggle
 Framer Motion animations
 
-## 📷 Preview
-
-![Calendar App Preview](https://github.com/user-attachments/assets/f7b10f77-bb9a-4fc6-a8da-a025fa27e744)
+## Live Demo
+🔗 https://calendar-project1.vercel.app
 
 
