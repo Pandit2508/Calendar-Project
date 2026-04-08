@@ -81,7 +81,7 @@ CALENDAR-APP/
 │   └── layout/
 │       └── CalendarLayout.jsx
 
-
+```
 # Installation
 
 git clone https://github.com/your-username/Calender-Poject.git
@@ -112,5 +112,6 @@ Framer Motion animations
 
 ## Live Demo
 [View Live Project](https://calendar-project1.vercel.app)
+```
 
 
