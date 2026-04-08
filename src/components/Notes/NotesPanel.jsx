@@ -6,7 +6,7 @@ const NotesPanel = ({ startDate, endDate, currentMonth }) => {
   const [input, setInput] = useState("");
   const [isLoaded, setIsLoaded] = useState(false); // 🔥 critical
 
-  // 🔑 Generate key
+  //  Generate key
   const getKey = () => {
     if (startDate && endDate) {
       return `${format(startDate, "yyyy-MM-dd")}_${format(endDate, "yyyy-MM-dd")}`;
@@ -21,7 +21,7 @@ const NotesPanel = ({ startDate, endDate, currentMonth }) => {
 
   const currentKey = getKey();
 
-  // 📥 Load notes ONCE
+  //  Load notes ONCE
   useEffect(() => {
     const saved = localStorage.getItem("calendar_notes_map");
     if (saved) {
@@ -34,14 +34,14 @@ const NotesPanel = ({ startDate, endDate, currentMonth }) => {
     setIsLoaded(true);
   }, []);
 
-  // 📤 Save notes (only after load)
+  //  Save notes (only after load)
   useEffect(() => {
     if (!isLoaded) return;
 
     localStorage.setItem("calendar_notes_map", JSON.stringify(notesMap));
   }, [notesMap, isLoaded]);
 
-  // 🔄 Sync input (ONLY after load)
+  //  Sync input (ONLY after load)
   useEffect(() => {
     if (!isLoaded) return;
 
@@ -52,7 +52,7 @@ const NotesPanel = ({ startDate, endDate, currentMonth }) => {
     }
   }, [currentKey, notesMap, isLoaded]);
 
-  // ✍️ Handle typing
+  //  Handle typing
   const handleChange = (e) => {
     const value = e.target.value;
     setInput(value);

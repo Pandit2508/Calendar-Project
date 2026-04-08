@@ -26,10 +26,8 @@ const DayCell = ({
 
   const isCurrentMonth = day.getMonth() === currentMonth.getMonth();
 
-  // ✅ FIX: weekend = Sat + Sun
   const isWeekend = day.getDay() === 6;
 
-  // 🎯 base styles (animation included)
   let baseStyles = `
     relative
     p-2 text-center rounded-lg cursor-pointer text-sm
@@ -69,7 +67,6 @@ const DayCell = ({
         {format(day, "d")}
       </span>
 
-      {/* 🎉 holiday dot */}
       {holiday && isCurrentMonth && !(isStart || isEnd) && (
         <div className="w-1.5 h-1.5 bg-green-500 rounded-full mx-auto mt-1 animate-pulse" />
       )}

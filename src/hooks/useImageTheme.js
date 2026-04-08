@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { getPalette } from "colorthief";
 
-// 🎯 brightness
+//  brightness
 const getBrightness = (r, g, b) => {
   return (r * 299 + g * 587 + b * 114) / 1000;
 };
 
-// 🎯 auto text color
+// auto text color
 const getTextColor = (r, g, b) => {
   return getBrightness(r, g, b) > 150 ? "#111827" : "#ffffff";
 };
@@ -28,7 +28,7 @@ export const useImageTheme = (imageUrl) => {
 
     img.onload = async () => {
       try {
-        const palette = await getPalette(img, 3); // ✅ correct now
+        const palette = await getPalette(img, 3);
 
         const [p, s, a] = palette;
 

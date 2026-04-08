@@ -11,8 +11,8 @@ import {
 } from "date-fns";
 import DayCell from "./DayCell";
 import { useImageTheme } from "../../hooks/useImageTheme";
-import { getHoliday } from "../utils/isHoliday"; // 👈 add this
-import HolidayModal from "../HolidayModal"; // 👈 add this
+import { getHoliday } from "../utils/isHoliday";
+import HolidayModal from "../HolidayModal"; 
 
 const CalendarGrid = ({
   currentMonth,
@@ -27,7 +27,7 @@ const CalendarGrid = ({
 
   const { primary, secondary, accent } = useImageTheme(imageUrl);
 
-  // 🧠 modal state
+  //modal state
   const [selectedHoliday, setSelectedHoliday] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
 
@@ -49,16 +49,16 @@ const CalendarGrid = ({
   const days = generateDays();
 
   const handleDateClick = (date) => {
-    const holiday = getHoliday(date); // 👈 check holiday first
+    const holiday = getHoliday(date);
 
-    // 🎉 if holiday → open modal
+    
     if (holiday) {
       setSelectedHoliday(holiday);
       setSelectedDate(date);
       return;
     }
 
-    // 🗓️ otherwise normal selection logic
+    
     if (!startDate || (startDate && endDate)) {
       setStartDate(date);
       setEndDate(null);
@@ -140,7 +140,7 @@ const CalendarGrid = ({
         ))}
       </div>
 
-      {/* 🎉 Holiday Modal */}
+      {/* Holiday Modal */}
       <HolidayModal
         holiday={selectedHoliday}
         date={selectedDate}

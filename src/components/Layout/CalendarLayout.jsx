@@ -7,9 +7,9 @@ const CalendarLayout = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
-  const [isLoaded, setIsLoaded] = useState(false); // 🔥 important
+  const [isLoaded, setIsLoaded] = useState(false); //
 
-  // 🧠 LOAD state (only once, safely)
+  // LOAD state (only once, safely)
   useEffect(() => {
     const savedMonth = localStorage.getItem("selected_month");
     const savedStart = localStorage.getItem("selected_start");
@@ -21,7 +21,7 @@ const CalendarLayout = () => {
       const start = new Date(savedStart);
       setStartDate(start);
 
-      // 🔥 if no end saved, treat as single-day selection
+      // if no end saved, treat as single-day selection
       if (!savedEnd) {
         setEndDate(start);
       }
@@ -34,7 +34,7 @@ const CalendarLayout = () => {
     setIsLoaded(true);
   }, []);
 
-  // 💾 SAVE state (only after load completes)
+  // SAVE state (only after load completes)
   useEffect(() => {
     if (!isLoaded) return;
 
@@ -48,7 +48,7 @@ const CalendarLayout = () => {
       localStorage.setItem("selected_end", endDate.toISOString());
     }
 
-    // 🔥 ensure single-date consistency
+    // ensure single-date consistency
     if (startDate && !endDate) {
       localStorage.setItem("selected_end", startDate.toISOString());
     }
