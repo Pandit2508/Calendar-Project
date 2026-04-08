@@ -12,7 +12,7 @@ import {
 import DayCell from "./DayCell";
 import { useImageTheme } from "../../hooks/useImageTheme";
 import { getHoliday } from "../utils/isHoliday";
-import HolidayModal from "../HolidayModal"; 
+import HolidayModal from "../HolidayModal";
 
 const CalendarGrid = ({
   currentMonth,
@@ -21,13 +21,19 @@ const CalendarGrid = ({
   endDate,
   setStartDate,
   setEndDate,
+  imageUrl,        // ✅ from parent
+  setImageUrl,     // ✅ from parent
 }) => {
-  const imageUrl =
-    "https://images.unsplash.com/photo-1506744038136-46273834b3fb";
+
+  const images = [
+    "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+    "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+  ];
 
   const { primary, secondary, accent } = useImageTheme(imageUrl);
 
-  //modal state
+  // 🎉 modal state (this stays here)
   const [selectedHoliday, setSelectedHoliday] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
 
@@ -51,14 +57,12 @@ const CalendarGrid = ({
   const handleDateClick = (date) => {
     const holiday = getHoliday(date);
 
-    
     if (holiday) {
       setSelectedHoliday(holiday);
       setSelectedDate(date);
       return;
     }
 
-    
     if (!startDate || (startDate && endDate)) {
       setStartDate(date);
       setEndDate(null);
@@ -81,6 +85,25 @@ const CalendarGrid = ({
         transition: "all 0.4s ease",
       }}
     >
+      {/* 🎨 Theme selector */}
+      <div className="flex gap-2 mb-4">
+        {images.map((img, i) => (
+          <button
+            key={i}
+            onClick={() => setImageUrl(img)}
+            className={`w-10 h-10 rounded overflow-hidden border-2 ${
+              imageUrl === img ? "border-white" : "border-transparent"
+            }`}
+          >
+            <img
+              src={img}
+              alt="theme"
+              className="w-full h-full object-cover"
+            />
+          </button>
+        ))}
+      </div>
+
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
         <button
@@ -134,13 +157,11 @@ const CalendarGrid = ({
             startDate={startDate}
             endDate={endDate}
             onDateClick={handleDateClick}
-            accent={accent}
-            secondary={secondary}
           />
         ))}
       </div>
 
-      {/* Holiday Modal */}
+      {/* 🎉 Holiday Modal */}
       <HolidayModal
         holiday={selectedHoliday}
         date={selectedDate}

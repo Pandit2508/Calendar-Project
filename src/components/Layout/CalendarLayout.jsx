@@ -7,9 +7,14 @@ const CalendarLayout = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
-  const [isLoaded, setIsLoaded] = useState(false); //
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  // LOAD state (only once, safely)
+  // 🎨 NEW: shared image state (THE FIX)
+  const [imageUrl, setImageUrl] = useState(
+    "https://images.unsplash.com/photo-1506744038136-46273834b3fb"
+  );
+
+  // LOAD state
   useEffect(() => {
     const savedMonth = localStorage.getItem("selected_month");
     const savedStart = localStorage.getItem("selected_start");
@@ -21,7 +26,6 @@ const CalendarLayout = () => {
       const start = new Date(savedStart);
       setStartDate(start);
 
-      // if no end saved, treat as single-day selection
       if (!savedEnd) {
         setEndDate(start);
       }
@@ -34,7 +38,7 @@ const CalendarLayout = () => {
     setIsLoaded(true);
   }, []);
 
-  // SAVE state (only after load completes)
+  // SAVE state
   useEffect(() => {
     if (!isLoaded) return;
 
@@ -48,7 +52,6 @@ const CalendarLayout = () => {
       localStorage.setItem("selected_end", endDate.toISOString());
     }
 
-    // ensure single-date consistency
     if (startDate && !endDate) {
       localStorage.setItem("selected_end", startDate.toISOString());
     }
@@ -57,16 +60,16 @@ const CalendarLayout = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center p-4">
       <div className="bg-white shadow-2xl rounded-2xl overflow-hidden w-full max-w-5xl">
-        
-        {/* Hero Image */}
+
+        {/* 🎨 Hero Image (NOW DYNAMIC) */}
         <div className="relative h-60 md:h-72">
           <img
-            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+            src={imageUrl}
             alt="calendar hero"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-all duration-500"
           />
 
-          {/* Dynamic Month */}
+          {/* Month */}
           <div className="absolute bottom-4 right-4 text-white text-right">
             <h2 className="text-2xl md:text-3xl font-bold">
               {currentMonth.toLocaleString("default", { month: "long" })}
@@ -79,7 +82,7 @@ const CalendarLayout = () => {
 
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row">
-          
+
           {/* Notes */}
           <div className="md:w-1/3 border-r p-4">
             <NotesPanel
@@ -98,6 +101,8 @@ const CalendarLayout = () => {
               endDate={endDate}
               setStartDate={setStartDate}
               setEndDate={setEndDate}
+              imageUrl={imageUrl}          // 👈 passed down
+              setImageUrl={setImageUrl}    // 👈 passed down
             />
           </div>
         </div>
