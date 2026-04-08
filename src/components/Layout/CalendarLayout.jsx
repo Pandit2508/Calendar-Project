@@ -47,22 +47,22 @@ const CalendarLayout = () => {
 
   // SAVE
   useEffect(() => {
-    if (!isLoaded) return;
+  if (!isLoaded) return;
 
-    localStorage.setItem("selected_month", currentMonth.toISOString());
+  localStorage.setItem("selected_month", currentMonth.toISOString());
 
-    if (startDate) {
-      localStorage.setItem("selected_start", startDate.toISOString());
-    }
+  if (startDate) {
+    localStorage.setItem("selected_start", startDate.toISOString());
+  }
 
-    if (endDate) {
-      localStorage.setItem("selected_end", endDate.toISOString());
-    }
+  if (endDate) {
+    localStorage.setItem("selected_end", endDate.toISOString());
+  }
 
-    if (startDate && !endDate) {
-      localStorage.setItem("selected_end", startDate.toISOString());
-    }
-  }, [currentMonth, startDate, endDate, isLoaded]);
+  if (startDate && !endDate) {
+    localStorage.setItem("selected_end", startDate.toISOString());
+  }
+}, [currentMonth, startDate, endDate, isLoaded]);
 
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center p-4">
