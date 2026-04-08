@@ -111,6 +111,6 @@ Dark/light mode toggle
 Framer Motion animations
 
 ## Live Demo
-🔗 https://calendar-project1.vercel.app
+[View Live Project](https://calendar-project1.vercel.app)
 
 
