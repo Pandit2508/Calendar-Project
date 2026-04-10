@@ -4,6 +4,9 @@ A modern and interactive calendar application built with **React** and **Tailwin
 
 ---
 
+## Live Demo
+https://calendar-project1.vercel.app
+
 ##  Features
 
 ###  Dynamic Theme Switching
@@ -110,8 +113,6 @@ Drag-to-select date ranges
 Dark/light mode toggle
 Framer Motion animations
 
-## Live Demo
-[View Live Project](https://calendar-project1.vercel.app)
 ```
 
 
